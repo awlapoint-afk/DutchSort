@@ -1,26 +1,21 @@
 class Solution:
     def dutch_sort(self, nums: list[int]):
-        if not nums:
-            return None
 
-        end = len(nums) - 1
         start = 0
-        index = 0
+        current = 0
+        mid = 1
+        end = len(nums) - 1
 
-        while start < end and index <= end:
-            if nums[index] == 0:
-                if index < start:
-                    index += 1
-                    continue
-                nums[start], nums[index] = nums[index], nums[start]
+        while current <= end:
+            if nums[current] < mid:
+                nums[start], nums[current] = nums[current], nums[start]
                 start += 1
-                continue
-            if nums[index] == 2:
-                nums[end], nums[index] = nums[index], nums[end]
+                current += 1
+            elif nums[current] > mid:
+                nums[end], nums[current] = nums[current], nums[end]
                 end -= 1
-                continue
-
-            index += 1
+            else:
+                current += 1
 
         return nums
 
@@ -38,6 +33,7 @@ test8 = [2, 2, 2, 2]
 test9 = [1, 0, 2, 1, 0, 2, 1, 0, 2]
 test10 = [2, 1, 0]
 test11 = [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]
+test12 = [0,0,0,2,2,2,1,1,1,1]
 
-print(test9)
-print(solution.dutch_sort(test9))
+print(test1)
+print(solution.dutch_sort(test1))
